@@ -72,9 +72,16 @@
     <div>
         <a href="#modal-close" title="Close" class="modal-close">Close</a>
         <h1 class="New_Post"> New Post </h1>
-        <form action="/" method="POST">{% csrf_token %}
+        <form action="{% url 'post_new' %}" method="POST">{% csrf_token %}
             {{ form.as_p}}
-            <a href="#modal-close" title="Save" class="modal-save">Save</a>
+            <table border="1">
+                <center>ADI : <input type="text" name="post_name"><br>
+                <hr>
+                    SOYADI : <input type="text" name="post_content"><br>
+                 <hr>
+                 <input class="save_post" type="submit" value="SAVE"></center>
+                </table>
+
         </form>
     </div>
 </div>

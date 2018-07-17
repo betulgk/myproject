@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name = 'home'),
     path('education/', education_bar, name = 'education'),
-    url(r'^#open-modal$', views.post_new),
+    url(r'^#open-modal$', views.post_new, name='post_new'),
 
 ]
