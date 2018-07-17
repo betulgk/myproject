@@ -70,17 +70,17 @@
 </div>
 <div id="open-modal" class="modal-window">
     <div>
-        <a href="#modal-close" title="Close" class="modal-close">Close</a>
+        <a href="" title="Close" class="modal-close">Close</a>
         <h1 class="New_Post"> New Post </h1>
-        <form action="{% url 'post_new' %}" method="POST">{% csrf_token %}
-            {{ form.as_p}}
-            <table border="1">
-                <center>ADI : <input type="text" name="post_name"><br>
-                <hr>
-                    SOYADI : <input type="text" name="post_content"><br>
-                 <hr>
-                 <input class="save_post" type="submit" value="SAVE"></center>
-                </table>
+        <form class="location_form" action="{% url 'post_new' %}" method="POST">{% csrf_token %}
+
+            <label class="location_name"> POST NAME :  </label>
+            <input class="postName" type="text" name="post_name"> <br>
+            <br>
+            <label class="location_content"> POST CONTENT : </label>
+            <input class="postContent" type="text" name="post_content"> <br>
+            <br>
+            <input class="save_post" type="submit" value="SAVE" >
 
         </form>
     </div>

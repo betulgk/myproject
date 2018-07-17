@@ -16,14 +16,11 @@ def education_bar(request):
 def post_new(request):
     form = postForm()
     info = Post.objects.all()
-    print ("aaaaa")
     if request.method == 'POST':
 
         post_name = request.POST.get('post_name')
         post_content = request.POST.get('post_content')
         post_author = User.objects.first()
-
-
 
         add = Post(author=post_author, post_name=post_name, post_content=post_content)
         add.save()

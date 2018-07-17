@@ -269,7 +269,7 @@ body {
 
 .modal-window>div {
   width: 614px ;
-  height : 400px ;
+  height : 300px ;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -324,31 +324,14 @@ a.modal-save {
 .modal-window h1 {
   font-size: 150%;
   margin: 0 0 15px;
-  color: #21545B;
+  color: black;
   position : relative ;
   left : 2px ;
 }
 
 
 
-input, textarea, select, button {
-    text-rendering: auto;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    text-indent: 10px;
-    text-align : start ;
-    text-shadow: none;
-    display: inline-block;
-    text-align: start;
-    margin: 0.3em;
-    font: 400 13.3333px Arial;
-    border-radius : 20px ;
-    width : 380px ;
-    height :90px ;
-    border-color : black ;
 
-}
 
 button.save_button {
     position: relative;
@@ -360,7 +343,57 @@ button.save_button {
     left : 390px ;
 }
 
-a.modal_close {
+.save_post {
 
+    position : absolute ;
+    left : 360px ;
+    top :270px ;
+    width : 80px ;
+    height : 50px ;
+    text-align : center ;
+    border-radius : 30px ;
+
+}
+
+.info {
+
+    position : absolute ;
+    left : 50px ;
+    top : 100px ;
+
+}
+.postName {
+    position : absolute ;
+    border-radius : 30px ;
+    width : 300px ;
+    height : 60px ;
+    left : 130px ;
+    top : 80px ;
+
+}
+
+.postContent {
+    position : absolute ;
+    border-radius : 30px ;
+    width : 300px ;
+    height : 60px ;
+    left : 150px ;
+    top : 170px ;
+
+}
+
+.location_content {
+
+    position : absolute ;
+    left : 20px ;
+    top : 180px ;
+
+}
+
+.location_name {
+
+    position : absolute ;
+    left : 30px ;
+    top : 90px ;
 
 }
