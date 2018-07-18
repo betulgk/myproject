@@ -71,14 +71,13 @@ a:-webkit-any-link {
 
 
 
-.sign_in {
+.sign_in_button {
 
     background-color : #333 ;
     border-radius : 10px ;
     position : absolute ;
     margin-left : 1150px ;
     border-style : solid ;
-    color : white ;
     width : 75px ;
     height : 35px ;
 
@@ -352,6 +351,8 @@ button.save_button {
     height : 50px ;
     text-align : center ;
     border-radius : 30px ;
+    border-style : solid ;
+    border-color : black ;
 
 }
 
@@ -369,6 +370,8 @@ button.save_button {
     height : 60px ;
     left : 130px ;
     top : 80px ;
+    border-style : solid ;
+
 
 }
 
@@ -379,6 +382,7 @@ button.save_button {
     height : 60px ;
     left : 150px ;
     top : 170px ;
+    border-style : solid ;
 
 }
 

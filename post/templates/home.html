@@ -20,7 +20,7 @@
 
 
 <div class = "header">
-    <button class="sign_in" type="signin"> Sign In </button>
+    <a href="http://127.0.0.1:8000/login"  class="sign_in_button" type="signin"> Sign In </a>
     <input class="search" type="search" placeholder="Search" aria-label="Search">
 </div>
 
@@ -28,6 +28,8 @@
 <div class="search_button">
     <i class="fa fa-search" style="font-size:35px"></i>
 </div>
+
+<!------------------------------------------------ NAV BAR ------------------------------------------------------------>
 
 
 <div class="top_nav">
@@ -41,6 +43,7 @@
     <a href="#Technarts">Technarts</a>
 </div>
 
+<!---------------------------------------- TEMPLATE FOR POST CREATION ------------------------------------------------->
 
 <div class=" middle ">
     <div class="container_post1">
@@ -48,7 +51,7 @@
             <div class="personal_info">
                 <div class="poto_line"></div>
                     <img class="pp" src="download.png">
-                <p><b>Post name : </b> First Post </p>
+                <p><b>Post name : </b>  </p>
                 <p><b>By :</b> Betul Gokbel </p>
             </div>
         <hr class="h_line" color="black">
@@ -61,7 +64,7 @@
     </div>
 </div>
 
-
+<!--------------------------------------------- POST CREATE--------------------------------------------------------- -->
 
 <div class="container">
      <div class="interior">
@@ -74,10 +77,10 @@
         <h1 class="New_Post"> New Post </h1>
         <form class="location_form" action="{% url 'post_new' %}" method="POST">{% csrf_token %}
 
-            <label class="location_name"> POST NAME :  </label>
+            <label class="location_name"><b>POST NAME : </b></label>
             <input class="postName" type="text" name="post_name"> <br>
             <br>
-            <label class="location_content"> POST CONTENT : </label>
+            <label class="location_content"> <b>POST CONTENT : </b></label>
             <input class="postContent" type="text" name="post_content"> <br>
             <br>
             <input class="save_post" type="submit" value="SAVE" >
@@ -85,6 +88,11 @@
         </form>
     </div>
 </div>
+
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+
 
 
 
