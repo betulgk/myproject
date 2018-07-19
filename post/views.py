@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import ListView
 from .models import Post
 from django.contrib.auth.forms import *
 from .forms import PostForm
@@ -16,7 +15,7 @@ class HomeView(View):
         post_author = posts.author
         post_content = posts.post_content
         return render(request, self.template_name, {'form': form, 'post_content': post_content,
-                                                                   'post_name': post_name, 'post_author': post_author})
+                                                    'post_name': post_name, 'post_author': post_author})
 
     def post(self, request):
         form = PostForm(request.POST)
@@ -33,10 +32,7 @@ class HomeView(View):
         return render(request, 'home.html', args)
 
 
-
 def education_bar(request):
     return render(request, 'education.html', {})
 
 
-class EducationView(View):
-    template_name = 'education.html'
