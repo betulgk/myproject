@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>STACKoverPOST</title>
+    <title>POST</title>
     <link rel="stylesheet" type="text/css" href="static/css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 </head>
@@ -20,7 +21,7 @@
 
 
 <div class = "header">
-    <a href="http://127.0.0.1:8000/login"  class="sign_in_button" type="signin"> Sign In </a>
+
     <input class="search" type="search" placeholder="Search" aria-label="Search">
 </div>
 
@@ -33,7 +34,7 @@
 
 
 <div class="top_nav">
-    <a class="active" href="education">Education</a>
+    <a class="active" href="#education">Education</a>
     <a href="#Science">Science</a>
     <a href="#Fun">Fun</a>
     <a href="#Sport">Sport</a>
@@ -49,17 +50,17 @@
     <div class="container_post1">
         <div class ="create_post">
             <div class="personal_info">
-                <div class="poto_line"></div>
+                <div class="photo_line"></div>
                     <img class="pp" src="download.png">
-                <p><b>Post name : </b>  </p>
-                <p><b>By :</b> Betul Gokbel </p>
+                <p><b>Post name : </b>  {{post_name}} </p>
+                <p><b>By :</b>  {{post_author}} </p>
             </div>
         <hr class="h_line" color="black">
             <div class="outer">
                 <div class="v_line"></div>
             </div>
             <p class="content">
-                <b>Content :</b> Whatever you want !</p>
+                <b>Content :</b> {{post_content}} </p>
         </div>
     </div>
 </div>
@@ -76,26 +77,24 @@
         <a href="" title="Close" class="modal-close">Close</a>
         <h1 class="New_Post"> New Post </h1>
         <form class="location_form" action="{% url 'post_new' %}" method="POST">{% csrf_token %}
+            <div class="form-group">
+                <label for="post_name">Post Name</label>
+                   <input type="text" class="form-control" id="post_name" placeholder="Enter post name"
+                          name="post_name">
+                    <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+            <div class="form-group">
+                <label for="post_content">Password:</label>
+                <input type="text" class="form-control" id="post_content" placeholder="Enter post content"
+                       name="post_content">
 
-            <label class="location_name"><b>POST NAME : </b></label>
-            <input class="postName" type="text" name="post_name"> <br>
-            <br>
-            <label class="location_content"> <b>POST CONTENT : </b></label>
-            <input class="postContent" type="text" name="post_content"> <br>
-            <br>
-            <input class="save_post" type="submit" value="SAVE" >
-
+            </div>
         </form>
     </div>
 </div>
 
 
 <!--------------------------------------------------------------------------------------------------------------------->
-
-
-
-
-
 
 </body>
 </html>
