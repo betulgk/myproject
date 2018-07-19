@@ -102,6 +102,7 @@ body {
     background-color: #ddd;
     color: black;
     border-radius : 10px ;
+    text-decoration : none ;
 
 }
 
@@ -177,7 +178,7 @@ hr {
     border : 2px ;
     border-radius : 10px ;
     position : absolute ;
-    top : 290px ;
+    top : 240px ;
     left : 350px ;
 
 }
@@ -218,16 +219,41 @@ body {
 }
 
 .btn {
-  background-color: #fcf8e36b;
-  padding: 0.8em 1em;
+  background-color: #4a32325c ;
   border-radius: 30px;
   text-decoration: none;
   position : relative ;
-  top : 168px ;
-  left : -400px ;
-  border-color : black ;
+  top : 120px ;
+  left : 220px ;
   border-style : solid ;
   width : 100px ;
+
+}
+
+.btn:hover {
+
+    text-decoration : none ;
+
+}
+
+.a btn {
+
+    background : black ;
+
+}
+
+.interior a{
+
+    background : black ;
+    color : white ;
+    position: absolute ;
+    top : 240px ;
+}
+
+.interior a:hover {
+
+    color : white ;
+
 }
 
 .modal-window {
@@ -254,7 +280,7 @@ body {
 
 .modal-window>div {
   width: 614px ;
-  height : 300px ;
+  height : 400px ;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -273,7 +299,7 @@ body {
 }
 
 .modal-close {
-  color: #aaa;
+  color: black;
   line-height: 50px;
   font-size: 80%;
   position: absolute;
@@ -282,6 +308,11 @@ body {
   top: 0;
   width: 70px;
   text-decoration: none;
+}
+
+.modal-close:hover {
+    text-decoration: none;
+
 }
 
 .modal-save {
@@ -388,11 +419,3 @@ button.save_button {
 
 }
 
-.btn-default {
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;
-    position: absolute;
-    top: 250px;
-    left: 270px;
-}
