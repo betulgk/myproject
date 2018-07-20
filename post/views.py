@@ -10,12 +10,12 @@ class HomeView(View):
 
     def get(self, request):
         form = PostForm()
-        posts = Post.objects.all()[0]
-        post_name = posts.post_name
+        posts = Post.objects.all()
+
+        """post_name = posts.post_name
         post_author = posts.author
-        post_content = posts.post_content
-        return render(request, self.template_name, {'form': form, 'post_content': post_content,
-                                                    'post_name': post_name, 'post_author': post_author})
+        post_content = posts.post_content"""
+        return render(request, self.template_name, {'form': form, 'posts':posts})
 
     def post(self, request):
         form = PostForm(request.POST)
@@ -34,5 +34,4 @@ class HomeView(View):
 
 def education_bar(request):
     return render(request, 'education.html', {})
-
 
