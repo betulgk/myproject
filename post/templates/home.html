@@ -79,7 +79,7 @@
     <div>
         <a href="" title="Close" class="modal-close">Close</a>
         <h1 class="New_Post"> New Post </h1>
-        <form class="location_form" action="{% url 'post_new' %}" method="POST">{% csrf_token %}
+        <form class="location_form" action="{% url 'home' %}" method="POST">{% csrf_token %}
             <div class="form-group">
                 <label for="post_name">Post Name</label>
                    <input type="text" class="form-control" id="post_name" placeholder="Enter post name"
