@@ -9,6 +9,7 @@
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link type="post/json" href="'static/css/post.json" />
 
 
 </head>
@@ -45,14 +46,16 @@
 </div>
 
 <!---------------------------------------- TEMPLATE FOR POST CREATION ------------------------------------------------->
-<div class=" middle ">
+
+<div class="middle">
     {% for post in posts %}<br>
         <div class="container_post1">
+            <div class="post_id" style="display:none;">{{post.id}}</div>
             <div class ="create_post">
                 <div class="personal_info">
                     <div class="photo_line"></div>
-                        <img class="pp" src="download.png">
-                    <p><b>Post name : </b>  {{post.post_name}} </p>
+                        <img class="pp" src="pp.png">
+                    <p id="name_post"><b>Post name : </b>  {{post.post_name}} </p>
                     <p><b>By :</b>  {{post.author}} </p>
                 </div>
             <hr class="h_line" color="black">
@@ -96,6 +99,26 @@
 </div>
 
 
-<!--------------------------------------------------------------------------------------------------------------------->
+<!------------------------------------------------JSON/JS/AJAX--------------------------------------------------------->
+
+
+<script>
+    $(document).ready(function(){
+        var list1 = data;
+        var txt = "";
+        var x;
+        for (x in list1){
+            txt +=list1[x]
+        }
+        document.getElementById("#name_post").innerHTML = txt;
+
+
+
+    });
+
+</script>
+
+
+
 </body>
 </html>

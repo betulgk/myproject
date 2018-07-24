@@ -1,15 +1,16 @@
-from django.shortcuts import render
+from django.core.serializers import json
+from django.shortcuts import render, HttpResponse
 from django.views import View
 from .models import Post
 from django.contrib.auth.forms import *
 from .forms import PostForm
+from django.http import JsonResponse
 
 
 class HomeView(View):
     template_name = 'home.html'
 
     def get(self, request):
-
         form = PostForm()
         posts = Post.objects.all()
 
@@ -30,4 +31,23 @@ class HomeView(View):
         return render(request, 'home.html', args)
 
 
+class JsonTestView(View):
+    def get(self, request):
+        posts = Post.objects.all()
 
+        post_lists = []
+
+        for post in posts:
+            post_lists.append({
+                'id': post.id,
+                'content': post.post_content,
+                'name': post.post_name,
+            })
+
+        data = {
+            'posts': post_lists
+        }
+
+        args = {'posts': posts, 'data': data}
+
+        return render(request, 'home.html', args)
