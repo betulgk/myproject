@@ -232,9 +232,6 @@ body {
   background-color: #4a32325c ;
   border-radius: 30px;
   text-decoration: none;
-  position : relative ;
-  top : 160px ;
-  left : 220px ;
   border-style : solid ;
   width : 100px ;
 
@@ -429,3 +426,9 @@ button.save_button {
 
 }
 
+button.btn.btn-info.btn-lg {
+
+    background: #333;
+    color: white;
+    border-color:black;
+}
