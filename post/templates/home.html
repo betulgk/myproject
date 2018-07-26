@@ -82,12 +82,12 @@
     <div>
         <a href="" title="Close" class="modal-close">Close</a>
         <h1 class="New_Post"> New Post </h1>
-        <form class="location_form" action="{% url 'home' %}" method="POST">{% csrf_token %}
+        <form class="location_form" method="POST">{% csrf_token %}
             <div class="form-group">
                 <label for="post_name">Post Name</label>
                    <input type="text" class="form-control" id="post_name" placeholder="Enter post name"
                           name="post_name">
-                    <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-danger">Submit</button>
             </div>
             <div class="form-group">
                 <label for="post_content">Post Content:</label>
@@ -104,15 +104,77 @@
 
 <script>
     $(document).ready(function(){
-        var list1 = data;
-        var txt = "";
-        var x;
-        for (x in list1){
-            txt +=list1[x]
-        }
-        document.getElementById("#name_post").innerHTML = txt;
+
+    function getCookie(c_name)
+        {
+            if (document.cookie.length > 0)
+            {
+                c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1)
+                {
+                    c_start = c_start + c_name.length + 1;
+                    c_end = document.cookie.indexOf(";", c_start);
+                    if (c_end == -1) c_end = document.cookie.length;
+                    return unescape(document.cookie.substring(c_start,c_end));
+                }
+            }
+        return "";
+     }
+
+    $('.location_form').submit(function(e) {
+
+        e.preventDefault();
+        console.log($('#post_name').val());
+        console.log($('#post_content').val());
+        var name = $('#post_name').val();
+        var content = $('#post_name').val();
+        $.ajax({
+            url: 'newestposts/51',
+            data: {'post_name' : name,
+            'post_content':content},
+            type : 'POST',
+            dataType:'json',
+            headers: { "X-CSRFToken": getCookie("csrftoken") },
+
+            success: function(data) {
+                console.log(data);
+                /*let new_msg = data[0];
+                let msg_template = `
+                     <div class="container_post1">
+                        <div class="post_id" style="display:none;">${new_msg.id}</div>
+                        <div class ="create_post">
+                            <div class="personal_info">
+                                <div class="photo_line"></div>
+                                <img class="pp" src="pp.png">
+                                <p id="name_post"><b>Post name : </b>  ${new_msg.name} </p>
+                                <p><b>By :</b>  default </p>
+                            </div>
+                            <hr class="h_line" color="black">
+                            <div class="outer">
+                                <div class="v_line"></div>
+                            </div>
+                            <p class="content">
+                                <b>Content :</b> ${new_msg.content}
+                            </p>
+                        </div>
+                    </div>
+            `;
+
+                let parent = document.querySelectorAll(".middle")[0];
+                let msg_node = document.createElement('div');
+                msg_node.innerHTML = msg_template;
+                parent.insertBefore(msg_node, parent.firstChild);*/
+
+                /*window.history.pushState("","","/");*/
 
 
+
+
+                }
+
+            })
+
+        })
 
     });
 
