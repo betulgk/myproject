@@ -1,10 +1,8 @@
 from django.shortcuts import render
-from django.urls import reverse
 from django.views import View
 from .models import Post
-from django.contrib.auth.forms import *
 from .forms import PostForm
-from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
+from django.http import JsonResponse
 
 
 class HomeView(View):
@@ -22,7 +20,7 @@ class JsonTestView(View):
         print(kwargs)
         new_msg = request.GET;
         print(new_msg)
-        posts = Post.objects.filter(id__gt=int(kwargs.get('pk'))).order_by('-pub_date')[:10]
+        posts = Post.objects.filter(id__gt=int(kwargs.get('pk'))).order_by('-pub_date')
 
         post_lists = []
 
@@ -36,18 +34,6 @@ class JsonTestView(View):
         return JsonResponse(post_lists, safe=False)
 
     def post(self, request, *args, **kwargs):
-        # form = PostForm(request.POST)
-
-        """
-            post_name = request.POST.get('post_name')
-            post_content = request.POST.get('post_content')
-            post_author = User.objects.first()
-            add = Post(author=post_author, post_name=post_name, post_content=post_content)
-            add.save()
-            posts = Post.objects.all()
-            args = {'form': form, 'post_name ': post_name, 'post_content': post_content, 'posts': posts}
-
-            return render(request, 'home.html', args)"""
 
         print(request.POST)
         a = request.POST.get('post_content', None)
@@ -58,3 +44,5 @@ class JsonTestView(View):
         new_post.save()
 
         return JsonResponse({'saved': 'True'})
+
+

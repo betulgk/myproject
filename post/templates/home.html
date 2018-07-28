@@ -85,7 +85,7 @@
           <h4 class="modal-title">NEW POST</h4>
         </div>
         <div class="modal-body">
-            <form class="location_form" method="POST">{% csrf_token %}
+            <form class="location_form" method="POST" id="myform">{% csrf_token %}
                 <div class="form-group">
                     <label for="post_name">Post Name</label>
                     <input type="text" class="form-control" id="post_name" placeholder="Enter post name"
@@ -108,30 +108,34 @@
 </div>
 
 
+
 <!--------------------------------------------------JS/AJAX------------------------------------------------------------>
 
 
 <script>
+
+
+
     $(document).ready(function(){
 
-    function getCookie(c_name)
-        {
-            if (document.cookie.length > 0)
+        function getCookie(c_name)
             {
-                c_start = document.cookie.indexOf(c_name + "=");
-                if (c_start != -1)
-                {
-                    c_start = c_start + c_name.length + 1;
-                    c_end = document.cookie.indexOf(";", c_start);
-                    if (c_end == -1) c_end = document.cookie.length;
-                    return unescape(document.cookie.substring(c_start,c_end));
+                var c_end, c_start;
+                if (document.cookie.length > 0) {
+                    c_start = document.cookie.indexOf(c_name + "=");
+                    if (c_start != -1) {
+                        c_start = c_start + c_name.length + 1;
+                        c_end = document.cookie.indexOf(";", c_start);
+                        if (c_end == -1) c_end = document.cookie.length;
+                        return unescape(document.cookie.substring(c_start, c_end));
+                    }
                 }
+            return "";
+
             }
-        return "";
-     }
-    console.log("asssssss");
-    //$('.location_form').submit(function(e) {
+    
     $('#btnsubmit').click(function(e){
+        $("body").css("cursor", "progress");
         e.preventDefault();
         console.log($('#post_name').val());
         console.log($('#post_content').val());
@@ -140,12 +144,13 @@
         $.ajax({
             url: 'newestposts/51',
             data: {'post_name' : name,
-            'post_content':contents},
+                    'post_content':contents},
             type : 'POST',
             dataType:'json',
             headers: { "X-CSRFToken": getCookie("csrftoken") },
 
             success: function(data) {
+                $("body").css("cursor", "default");
                 console.log(data);
                 if(data['saved']=='True'){
                     var html='<br><div class="container_post1">\
@@ -165,12 +170,13 @@
                     <b>Content :</b> '+contents+' </p>\
             </div>\
         </div>';
-                $( ".middle" ).append(html);
+                $( ".middle" ).prepend(html);
                 }
                }
             })
         })
     });
+
 
 </script>
 
