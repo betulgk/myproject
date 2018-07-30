@@ -7,8 +7,4 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ("author", "post_name", "post_content")
 
-    def clean_content(self):
-        content = self.cleaned_data['post_content']
-
-        return content
 

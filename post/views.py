@@ -16,8 +16,9 @@ class HomeView(View):
 
 
 class JsonTestView(View):
+
     def get(self, request, **kwargs):
-        print(kwargs)
+
         new_msg = request.GET;
         print(new_msg)
         posts = Post.objects.filter(id__gt=int(kwargs.get('pk'))).order_by('-pub_date')
@@ -35,7 +36,6 @@ class JsonTestView(View):
 
     def post(self, request, *args, **kwargs):
 
-        print(request.POST)
         a = request.POST.get('post_content', None)
         b = request.POST.get('post_name', None)
 
