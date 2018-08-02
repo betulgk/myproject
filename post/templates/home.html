@@ -107,14 +107,56 @@
   </div>
 </div>
 
-<!--------------------------------------------------JS/AJAX------------------------------------------------------------>
+<!-----------------------------------------------------JS-------------------------------------------------------------->
 
 
-<script type="text/javascript">
+<script>
 
-    $(window).load(function() {
+    $(window).load(function() { // loading gif
         $(".loader").fadeOut(3000);
       });
+
+
+
+    $(window).scroll(function() {
+        if($(window).scrollTop() == $(document).height() - $(window).height()) {
+            $.get('/newestposts/1', function (data) {
+                let posts = data.new_posts;
+                let html = '';
+                for (let i = 0; i < posts.length; i++) {
+                    let current_post = posts[i];
+                    let name = current_post.name;
+                    let contents = current_post.content;
+                    let id = current_post.id;
+                    let base = '<br><div class="container_post1">\
+                        <div class="post_id" style="display:none;">+ id +</div> \
+                        <div class ="create_post">\
+                            <div class="personal_info">\
+                                <div class="photo_line"></div>\
+                                    <img class="pp" src="pp.png">\
+                                <p id="name_post"><b> Post name : </b>  ' + name + '</p>\
+                                <p><b>By :</b></p>\
+                            </div>\
+                        <hr class="h_line" color="black">\
+                            <div class="outer">\
+                                <div class="v_line"></div>\
+                            </div>\
+                            <p class="content">\
+                                <b>Content :</b> ' + contents + ' </p>\
+                        </div>\
+                    </div>';
+                    html += base;
+                }
+
+
+                $(".middle").append(html);
+            });
+        }
+        //console.log("on scroll...");
+        //var check = $('.middle :visible:last').innerText;
+        //console.log("check", check)
+    });
+
 
 
     $(document).ready(function(){
@@ -136,26 +178,49 @@
 
             }
 
+        $('#loadmore').click(function(e) {
+            $.get('/newestposts/', function(data) {
+                let posts = data.new_posts;
+                let html = '';
+                for(let i = 0; i < posts.length; i++) {
+                    let current_post = posts[i];
+                    document.write(i)
+                    let name = current_post.name;
+                    let contents = current_post.content;
+                    let id = current_post.id;
+                    let base='<br><div class="container_post1">\
+                    <div class="post_id" style="display:none;">+ id +</div> \
+                    <div class ="create_post">\
+                        <div class="personal_info">\
+                            <div class="photo_line"></div>\
+                                <img class="pp" src="pp.png">\
+                            <p id="name_post"><b> Post name : </b>  '+name+'</p>\
+                            <p><b>By :</b></p>\
+                        </div>\
+                    <hr class="h_line" color="black">\
+                        <div class="outer">\
+                            <div class="v_line"></div>\
+                        </div>\
+                        <p class="content">\
+                            <b>Content :</b> '+contents+' </p>\
+                    </div>\
+                </div>';
+                    html += base;
+                }
+
+                $( ".middle" ).append(html);
+            });
+        });
+
         $('#btnsubmit').click(function(e){
-
-            /*$(document).ajaxStart(function(){
-                $("#wait").css("display", "block");
-            });
-            $(document).ajaxComplete(function(){
-                $("#wait").css("display", "none");
-            });
-            $("#btnsubmit").click(function(){
-                $("#txt").load("demo_ajax_load.asp");
-            });*/
-
 
             e.preventDefault();
             console.log($('#post_name').val());
             console.log($('#post_content').val());
-            var name = $('#post_name').val();
-            var contents = $('#post_content').val();
+            let name = $('#post_name').val();
+            let contents = $('#post_content').val();
             $.ajax({
-                url: 'newestposts/51',
+                url: 'newestposts/',
                 data: {'post_name' : name,
                         'post_content':contents},
                 type : 'POST',
@@ -165,7 +230,7 @@
                 success: function(data) {
                     console.log(data);
                     if(data['saved']=='True'){
-                        var html='<br><div class="container_post1">\
+                        let html='<br><div class="container_post1">\
                 <div class="post_id" style="display:none;">{{post.id}}</div> \
                 <div class ="create_post">\
                     <div class="personal_info">\
@@ -188,10 +253,6 @@
                 })
             })
     });
-
-
-
-
 
 </script>
 
