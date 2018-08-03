@@ -6,10 +6,12 @@
     <title>POST</title>
     <link rel="stylesheet" type="text/css" href="static/css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link rel="stylesheet" href="static/css/bootstrap.css">
     <script  src="static/js/bootstrap.js/"></script>
+
+
 </head>
 <body>
 
@@ -17,10 +19,16 @@
 
 <div class="logo">
     <i class="em em-smiling_imp" style="font-size:50px"></i>
+
 </div>
+
+
 <div class = "header">
+
     <input class="search" type="search" placeholder="Search" aria-label="Search">
 </div>
+
+
 <div class="search_button">
     <i class="fa fa-search" style="font-size:35px"></i>
 </div>
@@ -40,7 +48,6 @@
 </div>
 
 <!---------------------------------------- TEMPLATE FOR POST CREATION ------------------------------------------------->
-
 <div class="middle">
     {% for post in posts %}<br>
         <div class="container_post1">
@@ -89,10 +96,9 @@
 </div>
 
 
-
 <!--------------------------------------------- POST CREATE--------------------------------------------------------- -->
 
-<div class="container">
+<div class="container" data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'>
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">New Post</button>
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -124,17 +130,14 @@
   </div>
 </div>
 
-
-
 <!--------------------------------------------------JS/AJAX------------------------------------------------------------>
 
 
-<script>
+<script type="text/javascript">
 
-    $(window).load(function() { // loading gif
-        $(".loader").fadeOut(1000);
-      });
-
+    $(window).load(function() {
+                $(".loader").fadeOut(3000);
+            });
 
     $(document).ready(function(){
         function getCookie(c_name)
@@ -151,51 +154,47 @@
                 }
             return "";
             }
+        $('#btnsubmit').click(function(e){
 
-    $('#btnsubmit').click(function(e){
-        $("body").css("cursor", "progress");
-        e.preventDefault();
-        console.log($('#post_name').val());
-        console.log($('#post_content').val());
-        var name = $('#post_name').val();
-        var contents = $('#post_content').val();
-        $.ajax({
-            url: 'newestposts/51',
-            data: {'post_name' : name,
-                    'post_content':contents},
-            type : 'POST',
-            dataType:'json',
-            headers: { "X-CSRFToken": getCookie("csrftoken") },
-            success: function(data) {
-                $("body").css("cursor", "default");
-                console.log(data);
-                if(data['saved']=='True'){
-                    var html='<br><div class="container_post1">\
-            <div class="post_id" style="display:none;">{{post.id}}</div> \
-            <div class ="create_post">\
-                <div class="personal_info">\
-                    <div class="photo_line"></div>\
-                        <img class="pp" src="pp.png">\
-                    <p id="name_post"><b> Post name : </b>  '+name+'</p>\
-                    <p><b>By :</b></p>\
+            e.preventDefault();
+            console.log($('#post_name').val());
+            console.log($('#post_content').val());
+            var name = $('#post_name').val();
+            var contents = $('#post_content').val();
+            $.ajax({
+                url: 'newestposts/51',
+                data: {'post_name' : name,
+                        'post_content':contents},
+                type : 'POST',
+                dataType:'json',
+                headers: { "X-CSRFToken": getCookie("csrftoken") },
+                success: function(data) {
+                    console.log(data);
+                    if(data['saved']=='True'){
+                        var html='<br><div class="container_post1">\
+                <div class="post_id" style="display:none;">{{post.id}}</div> \
+                <div class ="create_post">\
+                    <div class="personal_info">\
+                        <div class="photo_line"></div>\
+                            <img class="pp" src="pp.png">\
+                        <p id="name_post"><b> Post name : </b>  '+name+'</p>\
+                        <p><b>By :</b></p>\
+                    </div>\
+                <hr class="h_line" color="black">\
+                    <div class="outer">\
+                        <div class="v_line"></div>\
+                    </div>\
+                    <p class="content">\
+                        <b>Content :</b> '+contents+' </p>\
                 </div>\
-            <hr class="h_line" color="black">\
-                <div class="outer">\
-                    <div class="v_line"></div>\
-                </div>\
-                <p class="content">\
-                    <b>Content :</b> '+contents+' </p>\
-            </div>\
-        </div>';
-                $( ".middle" ).prepend(html);
-                }
-               }
+            </div>';
+                    $( ".middle" ).prepend(html);
+                    }
+                   }
+                })
             })
-        })
     });
 </script>
-
-
 
 </body>
 </html>

@@ -181,7 +181,7 @@ hr {
 
     background : #00000040 ;
     width : 640px ;
-    height : 2900px ;
+    height : 100% ;
     border : 2px ;
     border-radius : 10px ;
     position : absolute ;
