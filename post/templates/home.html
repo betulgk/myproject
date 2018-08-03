@@ -6,12 +6,10 @@
     <title>POST</title>
     <link rel="stylesheet" type="text/css" href="static/css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link rel="stylesheet" href="static/css/bootstrap.css">
     <script  src="static/js/bootstrap.js/"></script>
-
-
 </head>
 <body>
 
@@ -19,16 +17,10 @@
 
 <div class="logo">
     <i class="em em-smiling_imp" style="font-size:50px"></i>
-
 </div>
-
-
 <div class = "header">
-
     <input class="search" type="search" placeholder="Search" aria-label="Search">
 </div>
-
-
 <div class="search_button">
     <i class="fa fa-search" style="font-size:35px"></i>
 </div>
@@ -69,13 +61,38 @@
             </div>
         </div>
     {% endfor %}
+
+    {% if posts.has_other_pages %}
+      <ul class="pagination">
+        {% if posts.has_previous %}
+          <li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in posts.paginator.page_range %}
+          {% if posts.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if posts.has_next %}
+          <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+{% endif %}
+
+
+
 </div>
 
 
 
 <!--------------------------------------------- POST CREATE--------------------------------------------------------- -->
 
-<div class="container" data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'>
+<div class="container">
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">New Post</button>
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -107,61 +124,19 @@
   </div>
 </div>
 
-<!-----------------------------------------------------JS-------------------------------------------------------------->
+
+
+<!--------------------------------------------------JS/AJAX------------------------------------------------------------>
 
 
 <script>
 
     $(window).load(function() { // loading gif
-        $(".loader").fadeOut(3000);
+        $(".loader").fadeOut(1000);
       });
 
 
-
-    $(window).scroll(function() {
-        if($(window).scrollTop() == $(document).height() - $(window).height()) {
-            $.get('/newestposts/1', function (data) {
-                let posts = data.new_posts;
-                let html = '';
-                for (let i = 0; i < posts.length; i++) {
-                    let current_post = posts[i];
-                    let name = current_post.name;
-                    let contents = current_post.content;
-                    let id = current_post.id;
-                    let base = '<br><div class="container_post1">\
-                        <div class="post_id" style="display:none;">+ id +</div> \
-                        <div class ="create_post">\
-                            <div class="personal_info">\
-                                <div class="photo_line"></div>\
-                                    <img class="pp" src="pp.png">\
-                                <p id="name_post"><b> Post name : </b>  ' + name + '</p>\
-                                <p><b>By :</b></p>\
-                            </div>\
-                        <hr class="h_line" color="black">\
-                            <div class="outer">\
-                                <div class="v_line"></div>\
-                            </div>\
-                            <p class="content">\
-                                <b>Content :</b> ' + contents + ' </p>\
-                        </div>\
-                    </div>';
-                    html += base;
-                }
-
-
-                $(".middle").append(html);
-            });
-        }
-        //console.log("on scroll...");
-        //var check = $('.middle :visible:last').innerText;
-        //console.log("check", check)
-    });
-
-
-
     $(document).ready(function(){
-
-
         function getCookie(c_name)
             {
                 var c_end, c_start;
@@ -175,86 +150,52 @@
                     }
                 }
             return "";
-
             }
 
-        $('#loadmore').click(function(e) {
-            $.get('/newestposts/', function(data) {
-                let posts = data.new_posts;
-                let html = '';
-                for(let i = 0; i < posts.length; i++) {
-                    let current_post = posts[i];
-                    document.write(i)
-                    let name = current_post.name;
-                    let contents = current_post.content;
-                    let id = current_post.id;
-                    let base='<br><div class="container_post1">\
-                    <div class="post_id" style="display:none;">+ id +</div> \
-                    <div class ="create_post">\
-                        <div class="personal_info">\
-                            <div class="photo_line"></div>\
-                                <img class="pp" src="pp.png">\
-                            <p id="name_post"><b> Post name : </b>  '+name+'</p>\
-                            <p><b>By :</b></p>\
-                        </div>\
-                    <hr class="h_line" color="black">\
-                        <div class="outer">\
-                            <div class="v_line"></div>\
-                        </div>\
-                        <p class="content">\
-                            <b>Content :</b> '+contents+' </p>\
-                    </div>\
-                </div>';
-                    html += base;
-                }
-
-                $( ".middle" ).append(html);
-            });
-        });
-
-        $('#btnsubmit').click(function(e){
-
-            e.preventDefault();
-            console.log($('#post_name').val());
-            console.log($('#post_content').val());
-            let name = $('#post_name').val();
-            let contents = $('#post_content').val();
-            $.ajax({
-                url: 'newestposts/',
-                data: {'post_name' : name,
-                        'post_content':contents},
-                type : 'POST',
-                dataType:'json',
-                headers: { "X-CSRFToken": getCookie("csrftoken") },
-
-                success: function(data) {
-                    console.log(data);
-                    if(data['saved']=='True'){
-                        let html='<br><div class="container_post1">\
-                <div class="post_id" style="display:none;">{{post.id}}</div> \
-                <div class ="create_post">\
-                    <div class="personal_info">\
-                        <div class="photo_line"></div>\
-                            <img class="pp" src="pp.png">\
-                        <p id="name_post"><b> Post name : </b>  '+name+'</p>\
-                        <p><b>By :</b></p>\
-                    </div>\
-                <hr class="h_line" color="black">\
-                    <div class="outer">\
-                        <div class="v_line"></div>\
-                    </div>\
-                    <p class="content">\
-                        <b>Content :</b> '+contents+' </p>\
+    $('#btnsubmit').click(function(e){
+        $("body").css("cursor", "progress");
+        e.preventDefault();
+        console.log($('#post_name').val());
+        console.log($('#post_content').val());
+        var name = $('#post_name').val();
+        var contents = $('#post_content').val();
+        $.ajax({
+            url: 'newestposts/51',
+            data: {'post_name' : name,
+                    'post_content':contents},
+            type : 'POST',
+            dataType:'json',
+            headers: { "X-CSRFToken": getCookie("csrftoken") },
+            success: function(data) {
+                $("body").css("cursor", "default");
+                console.log(data);
+                if(data['saved']=='True'){
+                    var html='<br><div class="container_post1">\
+            <div class="post_id" style="display:none;">{{post.id}}</div> \
+            <div class ="create_post">\
+                <div class="personal_info">\
+                    <div class="photo_line"></div>\
+                        <img class="pp" src="pp.png">\
+                    <p id="name_post"><b> Post name : </b>  '+name+'</p>\
+                    <p><b>By :</b></p>\
                 </div>\
-            </div>';
-                    $( ".middle" ).prepend(html);
-                    }
-                   }
-                })
+            <hr class="h_line" color="black">\
+                <div class="outer">\
+                    <div class="v_line"></div>\
+                </div>\
+                <p class="content">\
+                    <b>Content :</b> '+contents+' </p>\
+            </div>\
+        </div>';
+                $( ".middle" ).prepend(html);
+                }
+               }
             })
+        })
     });
-
 </script>
+
+
 
 </body>
 </html>

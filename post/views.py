@@ -3,19 +3,43 @@ from django.views import View
 from .models import Post
 from .forms import PostForm
 from django.http import JsonResponse
+from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-POST_COUNT_PER_LOAD = 1
-CURRENT_POST_COUNT = 3
 
 class HomeView(View):
     template_name = 'home.html'
 
     def get(self, request):
-        form = PostForm()
-        posts = Post.objects.all().order_by('-pub_date')[:CURRENT_POST_COUNT]
+         # form = PostForm()
+         # posts = Post.objects.all().order_by('-pub_date')
 
-        return render(request, self.template_name, {'form': form, 'posts': posts})
+        post_list = Post.objects.all().order_by('-pub_date')
+        page = request.GET.get('page', 1)
+        paginator = Paginator(post_list, 2)
 
+        try:
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            posts = paginator.page(1)
+        except EmptyPage:
+            posts = paginator.page(paginator.num_pages)
+
+        return render(request, self.template_name, {'posts': posts})
+
+    def index(request):
+        post_list = Post.objects.all()
+        page = request.GET.get('page',1)
+        paginator = Paginator(post_list,10)
+
+        try:
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            posts = paginator.page(1)
+        except EmptyPage:
+            posts = paginator.page(paginator.num_pages)
+
+        return render(request, 'home.html', {'posts': posts})
 
 class JsonTestView(View):
 
@@ -23,7 +47,7 @@ class JsonTestView(View):
 
         new_msg = request.GET;
         print(new_msg)
-        posts = Post.objects.all().order_by('-pub_date')[CURRENT_POST_COUNT:CURRENT_POST_COUNT+POST_COUNT_PER_LOAD]
+        posts = Post.objects.filter(id__gt=int(kwargs.get('pk'))).order_by('-pub_date')
 
         post_lists = []
 
@@ -34,18 +58,15 @@ class JsonTestView(View):
                 'name': post.post_name,
             })
 
-        return JsonResponse({'new_posts': post_lists}, safe=False)
+        return JsonResponse(post_lists, safe=False)
 
     def post(self, request, *args, **kwargs):
 
-        post_content = request.POST.get('post_content', None)
-        post_name = request.POST.get('post_name', None)
+        a = request.POST.get('post_content', None)
+        b = request.POST.get('post_name', None)
 
-        new_post = Post(author='', post_name=post_name, post_content=post_content)
+        new_post = Post(author='', post_name=b, post_content=a)
 
         new_post.save()
 
-        CURRENT_POST_COUNT += 1
         return JsonResponse({'saved': 'True'})
-
-
