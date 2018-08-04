@@ -10,32 +10,20 @@
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link rel="stylesheet" href="static/css/bootstrap.css">
     <script  src="static/js/bootstrap.js/"></script>
-
-
 </head>
 <body>
-
 <div class="loader"></div>
-
 <div class="logo">
     <i class="em em-smiling_imp" style="font-size:50px"></i>
-
 </div>
-
-
 <div class = "header">
-
     <input class="search" type="search" placeholder="Search" aria-label="Search">
 </div>
-
 
 <div class="search_button">
     <i class="fa fa-search" style="font-size:35px"></i>
 </div>
-
 <!------------------------------------------------ NAV BAR ------------------------------------------------------------>
-
-
 <div class="top_nav">
     <a class="active" href="/">Education</a>
     <a href="/">Science</a>
@@ -46,7 +34,6 @@
     <a href="/">Troll</a>
     <a href="/">Technarts</a>
 </div>
-
 <!---------------------------------------- TEMPLATE FOR POST CREATION ------------------------------------------------->
 <div class="middle">
     {% for post in posts %}<br>
@@ -68,7 +55,6 @@
             </div>
         </div>
     {% endfor %}
-
     {% if posts.has_other_pages %}
       <ul class="pagination">
         {% if posts.has_previous %}
@@ -90,14 +76,8 @@
         {% endif %}
       </ul>
 {% endif %}
-
-
-
 </div>
-
-
 <!--------------------------------------------- POST CREATE--------------------------------------------------------- -->
-
 <div class="container" data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'>
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">New Post</button>
   <div class="modal fade" id="myModal" role="dialog">
@@ -112,14 +92,13 @@
                 <div class="form-group">
                     <label for="post_name">Post Name</label>
                     <input type="text" class="form-control" id="post_name" placeholder="Enter post name"
-                          name="post_name">
+                           name="post_name">
                 </div>
                 <div class="form-group">
                     <label for="post_content">Post Content:</label>
                     <input type="text" class="form-control" id="post_content" placeholder="Enter post content"
                        name="post_content">
                 </div>
-
                 <div class="modal-footer">
                     <input type="submit" id="btnsubmit" class="btn btn-default" data-dismiss="modal" value="Submit">
                 </div>
@@ -129,17 +108,14 @@
     </div>
   </div>
 </div>
-
 <!--------------------------------------------------JS/AJAX------------------------------------------------------------>
-
-
 <script type="text/javascript">
 
-    $(window).load(function() {
+    $(window).load(function() {    // loading icon for home page.
                 $(".loader").fadeOut(3000);
             });
 
-    $(document).ready(function(){
+    $(document).ready(function(){  // for csrf token
         function getCookie(c_name)
             {
                 var c_end, c_start;
@@ -154,7 +130,8 @@
                 }
             return "";
             }
-        $('#btnsubmit').click(function(e){
+
+        $('#btnsubmit').click(function(e){ //  load page without reloading with ajax request
 
             e.preventDefault();
             console.log($('#post_name').val());
@@ -169,7 +146,6 @@
                 dataType:'json',
                 headers: { "X-CSRFToken": getCookie("csrftoken") },
                 success: function(data) {
-                    console.log(data);
                     if(data['saved']=='True'){
                         var html='<br><div class="container_post1">\
                 <div class="post_id" style="display:none;">{{post.id}}</div> \
@@ -195,6 +171,5 @@
             })
     });
 </script>
-
 </body>
 </html>

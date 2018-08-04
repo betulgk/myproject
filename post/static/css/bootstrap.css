@@ -4696,13 +4696,15 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding-left: 0;
   margin: 20px 0;
   border-radius: 4px;
+  position: relative;
+  top:60px;
+  left: 38px;
 }
 .pagination > li {
   display: inline;
 }
 .pagination > li > a,
-                                                                                                                                                                                                                                        .pagination > li > span {
-    position: relative;
+.pagination > li > span {
     float: left;
     padding: 6px 12px;
     line-height: 1.42857143;
@@ -4711,9 +4713,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     background-color: #fff;
     border: 1px solid #fff;
     margin-left: -1px;
-    top: 60px;
-    left: 100px;
 }
+
 .pagination > li:first-child > a,
 .pagination > li:first-child > span {
   margin-left: 0;
