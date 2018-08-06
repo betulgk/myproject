@@ -1,9 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from .models import Post
-from .forms import PostForm
 from django.http import JsonResponse
-from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -40,6 +38,42 @@ class HomeView(View):
             posts = paginator.page(paginator.num_pages)
 
         return render(request, 'home.html', {'posts': posts})
+
+
+class LoginHomeView(View):
+    template_name = 'login-home.html'
+
+    def get(self, request):
+        # form = PostForm()
+        # posts = Post.objects.all().order_by('-pub_date')
+
+        post_list = Post.objects.all().order_by('-pub_date')
+        page = request.GET.get('page', 1)
+        paginator = Paginator(post_list, 2)
+
+        try:
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            posts = paginator.page(1)
+        except EmptyPage:
+            posts = paginator.page(paginator.num_pages)
+
+        return render(request, self.template_name, {'posts': posts})
+
+    def index(request):
+        post_list = Post.objects.all()
+        page = request.GET.get('page', 1)
+        paginator = Paginator(post_list, 10)
+
+        try:
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            posts = paginator.page(1)
+        except EmptyPage:
+            posts = paginator.page(paginator.num_pages)
+
+        return render(request, 'login-home.html', {'posts': posts})
+
 
 class JsonTestView(View):
 

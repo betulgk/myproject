@@ -1,0 +1,117 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POST</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script  src="{% static 'js/bootstrap.js' %}"></script>
+    <script  src="{% static 'js/js_home.js' %}"></script>
+
+</head>
+<body>
+<div class="loader"></div>
+<div class="logo">
+    <i class="em em-smiling_imp" style="font-size:50px"></i>
+</div>
+<div class = "header">
+    <input class="search" type="search" placeholder="Search" aria-label="Search">
+</div>
+
+<div class="search_button">
+    <i class="fa fa-search" style="font-size:35px"></i>
+</div>
+<!------------------------------------------------ NAV BAR ------------------------------------------------------------>
+<div class="top_nav">
+    <a class="active" href="/">Education</a>
+    <a href="/">Science</a>
+    <a href="/">Fun</a>
+    <a href="/">Sport</a>
+    <a href="/">Book</a>
+    <a href="/">News</a>
+    <a href="/">Troll</a>
+    <a href="/">Technarts</a>
+</div>
+<!---------------------------------------- TEMPLATE FOR POST CREATION ------------------------------------------------->
+<div class="middle">
+    {% for post in posts %}<br>
+        <div class="container_post1">
+            <div class="post_id" style="display:none;">{{post.id}}</div>
+            <div class ="create_post">
+                <div class="personal_info">
+                    <div class="photo_line"></div>
+                        <img class="pp" src="pp.png">
+                    <p id="name_post"><b>Post name : </b>  {{post.post_name}} </p>
+                    <p><b>By :</b>  {{post.author}} </p>
+                </div>
+            <hr class="h_line" color="black">
+                <div class="outer">
+                    <div class="v_line"></div>
+                </div>
+                <p class="content">
+                    <b>Content :</b> {{post.post_content}} </p>
+            </div>
+        </div>
+    {% endfor %}
+    {% if posts.has_other_pages %}
+        <div class="text-center" >
+          <ul class="pagination pagination-centered">
+            {% if posts.has_previous %}
+              <li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in posts.paginator.page_range %}
+              {% if posts.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if posts.has_next %}
+              <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+          </ul>
+        </div>
+{% endif %}
+</div>
+<!--------------------------------------------- POST CREATE--------------------------------------------------------- -->
+<div class="container" data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">New Post</button>
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">NEW POST</h4>
+        </div>
+        <div class="modal-body">
+            <form class="location_form" method="POST" id="myform">{% csrf_token %}
+                <div class="form-group">
+                    <label for="post_name">Post Name</label>
+                    <input type="text" class="form-control" id="post_name" placeholder="Enter post name"
+                           name="post_name">
+                </div>
+                <div class="form-group">
+                    <label for="post_content">Post Content:</label>
+                    <input type="text" class="form-control" id="post_content" placeholder="Enter post content"
+                       name="post_content">
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" id="btnsubmit" class="btn btn-default" data-dismiss="modal" value="Submit">
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
