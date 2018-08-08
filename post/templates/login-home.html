@@ -1,18 +1,15 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>POST</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <script  src="{% static 'js/bootstrap.js' %}"></script>
-    <script  src="{% static 'js/js_home.js' %}"></script>
-
+    <script  src="{% static 'js/bootstrap.js'%}"></script>
 </head>
 <body>
 <div class="loader"></div>
@@ -22,7 +19,6 @@
 <div class = "header">
     <input class="search" type="search" placeholder="Search" aria-label="Search">
 </div>
-
 <div class="search_button">
     <i class="fa fa-search" style="font-size:35px"></i>
 </div>
@@ -59,59 +55,48 @@
         </div>
     {% endfor %}
     {% if posts.has_other_pages %}
-        <div class="text-center" >
-          <ul class="pagination pagination-centered">
-            {% if posts.has_previous %}
-              <li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
-            {% else %}
-              <li class="disabled"><span>&laquo;</span></li>
-            {% endif %}
-            {% for i in posts.paginator.page_range %}
-              {% if posts.number == i %}
-                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-              {% else %}
-                <li><a href="?page={{ i }}">{{ i }}</a></li>
-              {% endif %}
-            {% endfor %}
-            {% if posts.has_next %}
-              <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
-            {% else %}
-              <li class="disabled"><span>&raquo;</span></li>
-            {% endif %}
-          </ul>
-        </div>
+      <ul class="pagination">
+        {% if posts.has_previous %}
+          <li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in posts.paginator.page_range %}
+          {% if posts.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if posts.has_next %}
+          <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+
+      </ul>
 {% endif %}
 </div>
-<!--------------------------------------------- POST CREATE--------------------------------------------------------- -->
-<div class="container" data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'>
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">New Post</button>
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">NEW POST</h4>
-        </div>
-        <div class="modal-body">
-            <form class="location_form" method="POST" id="myform">{% csrf_token %}
-                <div class="form-group">
-                    <label for="post_name">Post Name</label>
-                    <input type="text" class="form-control" id="post_name" placeholder="Enter post name"
-                           name="post_name">
-                </div>
-                <div class="form-group">
-                    <label for="post_content">Post Content:</label>
-                    <input type="text" class="form-control" id="post_content" placeholder="Enter post content"
-                       name="post_content">
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" id="btnsubmit" class="btn btn-default" data-dismiss="modal" value="Submit">
-                </div>
-            </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<script type="text/javascript">
+    $(window).load(function() {
+                $(".loader").fadeOut(3000);
+            });
+    $(document).ready(function(){
+        function getCookie(c_name)
+            {
+                var c_end, c_start;
+                if (document.cookie.length > 0) {
+                    c_start = document.cookie.indexOf(c_name + "=");
+                    if (c_start != -1) {
+                        c_start = c_start + c_name.length + 1;
+                        c_end = document.cookie.indexOf(";", c_start);
+                        if (c_end == -1) c_end = document.cookie.length;
+                        return unescape(document.cookie.substring(c_start, c_end));
+                    }
+                }
+            return "";
+            }
+    });
+</script>
 </body>
 </html>

@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SIGN UP</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body id="signupform">
+<div class="container">
+    <div class="signup-form">
+        <div class="main-div">
+            <div class="panel"></div>
+                <form class="form-signup" method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                      <p>
+                        {{ field.label_tag }}<br>
+                        {{ field }}
+                        {% if field.help_text %}
+                          <small style="color: grey">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                          <p style="color: #ff00a5">{{ error }}</p>
+                        {% endfor %}
+                      </p>
+                    {% endfor %}
+                    <button type="submit">Sign up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------JS------------------->
+<script>
+    $(window).load(function() {    // loading icon for home page.
+                $('#id_username').attr('placeholder','Username');
+                $('#id_password1').attr('placeholder','Password');
+                $('#id_password2').attr('placeholder','Password');
+            });
+</script>
+</body>
+</html>
