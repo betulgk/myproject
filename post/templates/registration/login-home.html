@@ -1,4 +1,5 @@
 {% load static %}
+<!--login olmadan gorunen ekran -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,10 @@
     <script  src="{% static 'js/bootstrap.js'%}"></script>
 </head>
 <body>
+<div>
+    <a class="btn btn-success"href="http://127.0.0.1:8000/accounts/login/" id="login-btn" >Login</a>
+    <a class="btn btn-success"href="http://127.0.0.1:8000/signup" id="signup-btn" >Sign Up</a>
+</div>
 <div class="loader"></div>
 <div class="logo">
     <i class="em em-smiling_imp" style="font-size:50px"></i>

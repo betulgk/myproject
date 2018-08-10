@@ -1,17 +1,6 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-
-
-def login_view(request):
-    if request.method == "POST":
-        form = AuthenticationForm(data=request.POST)
-
-        if form.is_valid():
-            return redirect('http://127.0.0.1:8000/')
-    else:
-        form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
 
 
 def signup(request):
@@ -27,3 +16,10 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'sign_up.html', {'form': form})
+
+
+def logout(request):
+    logout(request)
+    return redirect("http://127.0.0.1:8000/home")
+
+

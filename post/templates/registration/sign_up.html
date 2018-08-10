@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script  src="{% static 'js/bootstrap.js' %}"></script>
 </head>
 <body id="signupform">
 <div class="container">
     <div class="signup-form">
-        <div class="main-div">
+        <div class="main-div1">
             <div class="panel"></div>
+                <h1 class="h1-signup">SIGN UP</h1>
                 <form class="form-signup" method="post">
                     {% csrf_token %}
                     {% for field in form %}
@@ -27,13 +30,13 @@
                         {% endfor %}
                       </p>
                     {% endfor %}
-                    <button type="submit">Sign up</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<!------------------JS------------------->
+<!--------------------------------------------------JS----------------------------------------------------------------->
 <script>
     $(window).load(function() {    // loading icon for home page.
                 $('#id_username').attr('placeholder','Username');

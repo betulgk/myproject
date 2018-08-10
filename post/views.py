@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from django.views import View
 from .models import Post
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 class HomeView(View):
     template_name = 'home.html'
+
+    def post(self,request):
+
+        return HttpResponseRedirect('/')
 
     def get(self, request):
          # form = PostForm()
@@ -59,7 +63,7 @@ class LoginHomeView(View):
         except EmptyPage:
             posts = paginator.page(paginator.num_pages)
 
-        return render(request, self.template_name, {'posts': posts})
+        return render(request, 'login-home.html', {'posts': posts})
 
     def index(request):
         post_list = Post.objects.all()

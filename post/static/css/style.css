@@ -75,7 +75,7 @@ body {
     padding-left : 0 ;
     padding-right : 0 ;
     border-style : solid ;
-
+    top: 100px;
 
 }
 
@@ -453,4 +453,30 @@ button.btn.btn-info.btn-lg {
     position: fixed;
     right: 0px;
     top: 0px;
+}
+
+#login-btn{
+    position: fixed;
+    right: 10px;
+    top:25px;
+}
+
+#signup-btn{
+    position: fixed;
+    right: 100px;
+    top:25px;
+}
+
+.dropdown{
+    color: black;
+    position: absolute;
+    top: -50px;
+    left: auto;
+    right: 0;
+
+}
+
+.dropdown-menu{
+    color: black;
+    width: 20px;
 }

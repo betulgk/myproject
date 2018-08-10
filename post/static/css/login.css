@@ -43,11 +43,11 @@ body {
 }
 h1,
 h6 {
-	font-family: 'Open Sans';
+	font-family: Comic SANS-MS;
 	font-weight: 300;
 	text-align: center;
 	position: absolute;
-	top: 45%;
+	top: 10px;
 	right: 0;
 	left: 0;
 }
@@ -76,7 +76,20 @@ h6 {
     width: 200px;
     height: 200px;
 	position: relative;
-    top: 145px;
+    top: 30px;
+}
+
+.main-div1{
+	border-radius: 10px;
+    margin: 10px auto 30px;
+    max-width: 38%;
+    padding: 50px 70px 70px 71px;
+    background: #4a464647 none repeat scroll 0 0;
+    width: 400px;
+    height: 500px;
+	position: relative;
+    top: 30px;
+
 }
 
 .login-form .form-group {
@@ -95,7 +108,7 @@ h6 {
 
 }
 .login-form  .btn.btn-primary {
-  background: #3e3a34 none repeat scroll 0 0;
+  background: #000000 none repeat scroll 0 0;
   border-radius: 8px;
   border: 0px;
   color: #ffffff;
@@ -133,13 +146,18 @@ h6 {
 
 form.loginform label{
 	display: none;
-
-
 }
+
 
 .loginform input {
 
-	padding: 8px;
+	padding: 18px;
+	position: relative;
+    top: -15px;
+	border-style: none;
+	border-radius: 8px;
+	position: relative;
+    /*top: -60px;*/
 
 }
 
@@ -153,5 +171,71 @@ form.form-signup small,label{
 }
 
 .form-signup input{
-	padding: 8px;
+	padding: 14px;
+	position: relative;
+    top: 30px;
+	left: 38px;
+	border-radius: 10px;
+	border:none;
+}
+
+form-signup p{
+
+	color: black;
+    position: relative;
+    top: 40px;
+    left: 30px;
+}
+
+.form-signup button{
+
+	position: relative;
+	top: 55px;
+	left:90px;
+}
+
+.h1-login{
+	font-family: Comic SANS-MS;
+	font-weight: 500;
+	text-align: center;
+	position: absolute;
+	top: -50px;
+	right: 0;
+	left: 1px;
+
+}
+
+.h1-signup{
+	font-family: Comic SANS-MS;
+	font-weight: 200px;
+	text-align: center;
+	position: absolute;
+	top: 20px;
+	left: 2px;
+	color: white;
+
+
+}
+
+#login-submit{
+
+	position: relative;
+	width: 100px;
+	height: 50px;
+	top: -40px;
+}
+
+form.loginform li {
+
+	position: relative;
+	top: -80px;
+	left: -20px;
+}
+
+#welcome-user1{
+
+    position: absolute;
+    left: 30px;
+    color: red;
+
 }

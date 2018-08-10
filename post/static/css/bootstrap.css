@@ -1263,10 +1263,10 @@ h3,
 .h3 {
   font-size: 24px;
 }
-h4,
-.h4 {
-  font-size: 18px;
-}
+/*h4,*/
+/*.h4 {*/
+  /*font-size: 18px;*/
+/*}*/
 h5,
 .h5 {
   font-size: 14px;
@@ -2493,7 +2493,7 @@ legend {
   border-bottom: 1px solid #e5e5e5;
 }
 label {
-  display: inline-block;
+  display: none;
   max-width: 100%;
   margin-bottom: 5px;
   font-weight: bold;
@@ -3102,11 +3102,11 @@ fieldset[disabled] .btn-default.focus {
 }
 .btn-primary {
   color: #fff;
-  background-color: #337ab7;
-  border-color: #2e6da4;
+  background-color: #000000;;
+  border-color: #000000;;
   position: absolute;
-  top: 10px;
-  right: 90px;
+  left: 145px;
+  bottom: 100px;
 }
 .btn-primary:focus,
 .btn-primary.focus {
@@ -3162,8 +3162,8 @@ fieldset[disabled] .btn-primary.focus {
 }
 .btn-success {
   color: #fff;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+  background-color: #333;
+  border-color: #333;
 }
 .btn-success:focus,
 .btn-success.focus {
@@ -3173,15 +3173,15 @@ fieldset[disabled] .btn-primary.focus {
 }
 .btn-success:hover {
   color: #fff;
-  background-color: #449d44;
-  border-color: #398439;
+  background-color: black;
+  border-color: black;
 }
 .btn-success:active,
 .btn-success.active,
 .open > .dropdown-toggle.btn-success {
   color: #fff;
-  background-color: #449d44;
-  border-color: #398439;
+  background-color: #333;
+  border-color: #333;
 }
 .btn-success:active:hover,
 .btn-success.active:hover,
@@ -5429,8 +5429,8 @@ button.list-group-item-danger.active:focus {
 }
 .panel {
   margin-bottom: 20px;
-  background-color: #fff;
-  border: 1px solid transparent;
+
+
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);

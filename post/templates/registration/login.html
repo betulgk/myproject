@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body id="LoginForm">
+<div class="container">
+    <div class="login-form">
+        <div class="main-div">
+            <div class="panel"></div>
+
+                <form class="loginform" action="{% url 'login' %}" method="post" >{%csrf_token%}
+
+                    <div class="username-form">
+                        <td>{{ form.username.label_tag }}</td>
+                        <td>{{ form.username }}</td>
+                    </div>
+                    <div>
+                        <td>{{ form.password.label_tag }}</td>
+                        <td>{{ form.password }}</td>
+                    </div>
+                    <div>
+                        <input type="submit" value="login" />
+                        <input type="hidden" name="next" value="{{ next }}" />
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+<!--------------------------------------------------------JS----------------------------------------------------------->
+<script>
+    $(window).load(function() {
+                $('#id_username').attr('placeholder', 'Username');
+                $('#id_password').attr('placeholder', 'Password');
+            });
+</script>
+</body>
+</html>
