@@ -28,7 +28,7 @@
         <div class="btn-group">
             <!--<button type="button" class="btn btn-default">Menu</button>-->
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <span>{{user.username}}</span>
+                <span id="user-username">{{user.username}}</span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                 <li><a href="{% url 'logout' %}">Logout</a></li>
@@ -58,7 +58,7 @@
                     <div class="photo_line"></div>
                         <img class="pp" src="pp.png">
                     <p id="name_post"><b>Post name : </b>  {{post.post_name}} </p>
-                    <p><b>By :</b>  {{post.author}} </p>
+                    <p><b>By : </b>  {{post.author}} </p>
                 </div>
             <hr class="h_line" color="black">
                 <div class="outer">
@@ -149,6 +149,10 @@
             console.log($('#post_content').val());
             var name = $('#post_name').val();
             var contents = $('#post_content').val();
+            var user = $("#user-username").text()
+            console.log("ysee", user)
+            // var user = $('#username-user').val();
+            console.log(user)
             $.ajax({
                 url: 'newestposts/51',
                 data: {'post_name' : name,
@@ -166,7 +170,7 @@
                         <div class="photo_line"></div>\
                             <img class="pp" src="pp.png">\
                         <p id="name_post"><b> Post name : </b>  '+name+'</p>\
-                        <p><b>By : </b></p>\
+                        <p><b>By : '+user+'</b></p>\
                     </div>\
                 <hr class="h_line" color="black">\
                     <div class="outer">\

@@ -88,8 +88,9 @@ class JsonTestView(View):
 
         a = request.POST.get('post_content', None)
         b = request.POST.get('post_name', None)
+        c = request.user.username
 
-        new_post = Post(author='', post_name=b, post_content=a)
+        new_post = Post(author=c, post_name=b, post_content=a)
 
         new_post.save()
 
