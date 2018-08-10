@@ -158,6 +158,7 @@ form.loginform label{
 	border-radius: 8px;
 	position: relative;
     /*top: -60px;*/
+	margin: 10px;
 
 }
 
@@ -238,4 +239,11 @@ form.loginform li {
     left: 30px;
     color: red;
 
+}
+
+
+.form-loginform input{
+    position: absolute;
+    top: 55px;
+    left: 90px;
 }

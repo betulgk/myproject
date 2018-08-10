@@ -1,9 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 
 
-def signup(request):
+def signup(request):  # signup here
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -18,8 +18,6 @@ def signup(request):
     return render(request, 'sign_up.html', {'form': form})
 
 
-def logout(request):
+def logout(request):  # logout here
     logout(request)
     return redirect("http://127.0.0.1:8000/home")
-
-
