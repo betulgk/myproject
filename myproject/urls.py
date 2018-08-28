@@ -2,10 +2,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from accounts.views import signup
+from accounts.views import signup, logout
 from post.views import HomeView, LoginHomeView, JsonTestView
 from django.conf.urls import url
-from django.contrib.auth.views import logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,7 +13,9 @@ urlpatterns = [
     path('home/', LoginHomeView.as_view(), name='login-home'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('signup/', signup),
-    url(r'^logout/', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout')
+    url(r'^logout/', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
+    # path('transpage/', TransPage.as_view()),
 ]
 
 urlpatterns += [

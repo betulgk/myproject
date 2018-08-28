@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +13,23 @@
     <script  src="{% static 'js/bootstrap.js' %}"></script>
 </head>
 <body id="signupform">
+<!------------------------------------------------TRANSLATION PAGE----------------------------------------------------->
+<form action="{% url 'set_language' %}" method="post">
+   {% csrf_token %}
+   <input name="next" type="hidden" value="{{ redirect_to }}" />
+   <button id="trans-button-en-login" type="submit" class="btn btn-sm" name="language" value="en">
+       EN
+   </button>
+   <button id="trans-button-tr-login" type="submit" class="btn btn-sm" name="language" value="tr">
+       TR
+   </button>
+</form>
+<!--------------------------------------------------------------------------------------------------------------------->
 <div class="container">
     <div class="signup-form">
         <div class="main-div1">
             <div class="panel"></div>
-                <h1 class="h1-signup">SIGN UP</h1>
+                <h1 class="h1-signup">{% trans "SIGN UP" %}</h1>
                 <form class="form-signup" method="post">
                     {% csrf_token %}
                     {% for field in form %}
@@ -30,7 +44,7 @@
                         {% endfor %}
                       </p>
                     {% endfor %}
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">{% trans "SUBMIT" %}</button>
                 </form>
             </div>
         </div>

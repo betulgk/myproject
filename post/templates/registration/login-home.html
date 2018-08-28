@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <!--login olmadan gorunen ekran -->
 <!DOCTYPE html>
 <html lang="en">
@@ -14,29 +16,40 @@
 </head>
 <body>
 <div>
-    <a class="btn btn-success"href="http://127.0.0.1:8000/accounts/login/" id="login-btn" >Login</a>
-    <a class="btn btn-success"href="http://127.0.0.1:8000/signup" id="signup-btn" >Sign Up</a>
+    <a class="btn btn-success"href="http://127.0.0.1:8000/accounts/login/" id="login-btn" > {% trans "Login"%} </a>
+    <a class="btn btn-success"href="http://127.0.0.1:8000/signup" id="signup-btn" >{% trans "Sign Up"%}</a>
 </div>
 <div class="loader"></div>
+<!------------------------------------------------TRANSLATION PAGE----------------------------------------------------->
+<form action="{% url 'set_language' %}" method="post">
+   {% csrf_token %}
+   <input name="next" type="hidden" value="{{ redirect_to }}" />
+   <button id="trans-button-en1" type="submit" class="btn btn-sm" name="language" value="en">
+       EN
+   </button>
+   <button id="trans-button-tr1" type="submit" class="btn btn-sm" name="language" value="tr">
+       TR
+   </button>
+</form>
+<!--------------------------------------------------------------------------------------------------------------------->
 <div class="logo">
     <i class="em em-smiling_imp" style="font-size:50px"></i>
 </div>
 <div class = "header">
-    <input class="search" type="search" placeholder="Search" aria-label="Search">
+    <input class="search" type="search" placeholder='{% trans "Search" %}' aria-label="Search">
 </div>
 <div class="search_button">
     <i class="fa fa-search" style="font-size:35px"></i>
 </div>
 <!------------------------------------------------ NAV BAR ------------------------------------------------------------>
-<div class="top_nav">
-    <a class="active" href="/">Education</a>
-    <a href="/">Science</a>
-    <a href="/">Fun</a>
-    <a href="/">Sport</a>
-    <a href="/">Book</a>
-    <a href="/">News</a>
-    <a href="/">Troll</a>
-    <a href="/">Technarts</a>
+<div class="top_nav" >
+    <a class="active" href="/">{% trans "Education" %}</a>
+    <a href="/">{% trans "Science" %}</a>
+    <a href="/">{% trans "Fun" %}</a>
+    <a href="/">{% trans "Sport" %}</a>
+    <a href="/">{% trans "Book" %}</a>
+    <a href="/">{% trans "Troll" %}</a>
+    <a href="/">{% trans "Technarts" %}</a>
 </div>
 <!---------------------------------------- TEMPLATE FOR POST CREATION ------------------------------------------------->
 <div class="middle">
@@ -47,15 +60,15 @@
                 <div class="personal_info">
                     <div class="photo_line"></div>
                         <img class="pp" src="pp.png">
-                    <p id="name_post"><b>Post name : </b>  {{post.post_name}} </p>
-                    <p><b>By :</b>  {{post.author}} </p>
+                    <p id="name_post"><b>{% trans "Post Name :" %} </b>  {{post.post_name}} </p>
+                    <p><b>{% trans "By :" %}</b>  {{post.author}} </p>
                 </div>
             <hr class="h_line" color="black">
                 <div class="outer">
                     <div class="v_line"></div>
                 </div>
                 <p class="content">
-                    <b>Content :</b> {{post.post_content}} </p>
+                    <b>{% trans "Content :" %}</b> {{post.post_content}} </p>
             </div>
         </div>
     {% endfor %}

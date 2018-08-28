@@ -73,8 +73,6 @@ h6 {
     max-width: 38%;
     padding: 50px 70px 70px 71px;
     background: #4a464647 none repeat scroll 0 0;
-    width: 200px;
-    height: 200px;
 	position: relative;
     top: 30px;
 }
@@ -246,4 +244,18 @@ form.loginform li {
     position: absolute;
     top: 55px;
     left: 90px;
+}
+
+#trans-button-en-login{
+
+    position: absolute;
+    right:10px;
+    top: 30px;
+}
+
+#trans-button-tr-login{
+
+    position: absolute;
+    right:50px;
+    top: 30px;
 }

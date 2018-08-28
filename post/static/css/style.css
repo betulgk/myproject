@@ -471,12 +471,48 @@ button.btn.btn-info.btn-lg {
     color: black;
     position: absolute;
     top: -50px;
-    left: auto;
-    right: 0;
+    right: 10px;
 
 }
 
 .dropdown-menu{
-    color: black;
+    color: #333;
     width: 20px;
+    border: black;
+}
+
+#name-dropdown {
+
+    background: #333;
+    color: white;
+    border: black;
+}
+
+#trans-button-en{
+
+    position: absolute;
+    right:10px;
+    top: 2px;
+}
+
+#trans-button-tr{
+
+    position: absolute;
+    right:10px;
+    top: 30px;
+}
+
+#trans-button-tr1{
+
+    position: fixed;
+    right:10px;
+    top: 70px;
+}
+
+#trans-button-en1{
+
+    position: fixed;
+    right:10px;
+    top: 100px;
+
 }

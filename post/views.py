@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.utils import translation
+from django.utils.translation import LANGUAGE_SESSION_KEY
 from django.views import View
 from .models import Post
 from django.http import JsonResponse, HttpResponseRedirect
@@ -8,18 +10,16 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 class HomeView(View):
     template_name = 'home.html'
 
-    def post(self,request):
+    def post(self):
 
         return HttpResponseRedirect('/')
 
     def get(self, request):
-         # form = PostForm()
-         # posts = Post.objects.all().order_by('-pub_date')
-
+        # form = PostForm()
+        # posts = Post.objects.all().order_by('-pub_date')
         post_list = Post.objects.all().order_by('-pub_date')
         page = request.GET.get('page', 1)
         paginator = Paginator(post_list, 2)
-
 
         try:
             posts = paginator.page(page)
@@ -30,30 +30,20 @@ class HomeView(View):
 
         return render(request, self.template_name, {'posts': posts})
 
+    def language(request, lang_code):
+        translation.activate(lang_code)
+        request.session[translation.LANGUAGE_SESSION_KEY] = lang_code
+        return HttpResponseRedirect('/')
+
+
 class LoginHomeView(View):
     template_name = 'login-home.html'
 
     def get(self, request):
-        # form = PostForm()
-        # posts = Post.objects.all().order_by('-pub_date')
 
         post_list = Post.objects.all().order_by('-pub_date')
         page = request.GET.get('page', 1)
         paginator = Paginator(post_list, 2)
-
-        try:
-            posts = paginator.page(page)
-        except PageNotAnInteger:
-            posts = paginator.page(1)
-        except EmptyPage:
-            posts = paginator.page(paginator.num_pages)
-
-        return render(request, 'login-home.html', {'posts': posts})
-
-    def index(request):
-        post_list = Post.objects.all()
-        page = request.GET.get('page', 1)
-        paginator = Paginator(post_list, 10)
 
         try:
             posts = paginator.page(page)
@@ -68,7 +58,6 @@ class LoginHomeView(View):
 class JsonTestView(View):
 
     def get(self, request, **kwargs):
-
         new_msg = request.GET;
         print(new_msg)
         posts = Post.objects.filter(id__gt=int(kwargs.get('pk'))).order_by('-pub_date')
@@ -85,7 +74,6 @@ class JsonTestView(View):
         return JsonResponse(post_lists, safe=False)
 
     def post(self, request, *args, **kwargs):
-
         a = request.POST.get('post_content', None)
         b = request.POST.get('post_name', None)
         c = request.user.username
