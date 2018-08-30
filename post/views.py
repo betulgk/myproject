@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from django.utils import translation
-from django.utils.translation import LANGUAGE_SESSION_KEY
 from django.views import View
 from .models import Post
 from django.http import JsonResponse, HttpResponseRedirect
@@ -29,11 +27,6 @@ class HomeView(View):
             posts = paginator.page(paginator.num_pages)
 
         return render(request, self.template_name, {'posts': posts})
-
-    def language(request, lang_code):
-        translation.activate(lang_code)
-        request.session[translation.LANGUAGE_SESSION_KEY] = lang_code
-        return HttpResponseRedirect('/')
 
 
 class LoginHomeView(View):

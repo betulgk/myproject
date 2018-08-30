@@ -1,5 +1,5 @@
 body {
-    background-image : url("foto.png") ;                                                                                                                                                                                                                                     .png") ;
+    background-image : url("foto.png") ;
     resize: both;
     overflow: auto;
     background-repeat: no-repeat;
@@ -515,4 +515,11 @@ button.btn.btn-info.btn-lg {
     right:10px;
     top: 100px;
 
+}
+
+#docs {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }

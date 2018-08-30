@@ -12,10 +12,9 @@ urlpatterns = [
     url(r'^newestposts/(?P<pk>\d+)$', JsonTestView.as_view()),
     path('home/', LoginHomeView.as_view(), name='login-home'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('signup/', signup),
+    path('accounts/signup/', signup),
     url(r'^logout/', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
-    # path('transpage/', TransPage.as_view()),
 ]
 
 urlpatterns += [

@@ -10,9 +10,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
     <script  src="{% static 'js/bootstrap.js'%}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 <body>
 <!--<div class="loader"></div>-->
@@ -129,7 +132,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <input type="submit" id="btnsubmit" class="btn btn-default" data-dismiss="modal"
+                    <input type="submit" id="btnsubmit" class="btn btn-default"
                            value='{% trans "Submit" %}'>
                 </div>
             </form>
@@ -143,7 +146,10 @@
     // $(window).load(function() {
     //             $(".loader").fadeOut(3000);
     // });
+
     $(document).ready(function(){
+        console.log("on ready...");
+
         function getCookie(c_name)
             {
                 var c_end, c_start;
@@ -158,16 +164,26 @@
                 }
             return "";
             }
-        $('#btnsubmit').click(function(e){
+
+            $('#btnsubmit').click(function(e){
             e.preventDefault();
             console.log($('#post_name').val());
             console.log($('#post_content').val());
             var name = $('#post_name').val();
             var contents = $('#post_content').val();
-            var user = $("#user-username").text()
-            console.log("ysee", user)
-            // var user = $('#username-user').val();
-            console.log(user)
+
+            if (name.length == 0 || contents.length == 0) {
+                swal("Please fill in the gap");
+                return;
+            }
+            if (name.length !== 0 || contents.length !== 0){
+                swal(name , contents , "success");
+
+            }
+
+            var user = $("#user-username").text();
+            console.log("yeee", user);
+            console.log(user);
             $.ajax({
                 url: 'newestposts/51',
                 data: {'post_name' : name,
@@ -177,6 +193,8 @@
                 headers: { "X-CSRFToken": getCookie("csrftoken") },
                 success: function(data) {
                     console.log(data);
+                    $('#myModal').modal('toggle');
+
                     if(data['saved']=='True'){
                         var html='<br><div class="container_post1">\
                 <div class="post_id" style="display:none;">{{post.id}}</div> \
@@ -199,7 +217,13 @@
                     }
                    }
                 })
-            })
+            });
+        /*$(document).ajaxSuccess(function(){
+            alert("AJAX request successfully completed");
+        });
+        $("#btnsubmit").click(function(){
+            $("div").load("demo_ajax_load.txt");
+        });*/
     });
 </script>
 </body>
