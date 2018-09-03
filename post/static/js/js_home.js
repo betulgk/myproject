@@ -1,14 +1,6 @@
 $(document).ready(function(){
         console.log("on ready...");
-        console.log("tt");
-        window.alert(gettext('this is to be translated'));
-        // document.write(gettext('this is to be translated'));
-        // var object_cnt = 1
-        // s = ngettext('literal for the singular case',
-        // 'literal for the plural case', object_cnt);
-        // fmts = ngettext('There is %s object. Remaining: %s',
-        //    'There are %s objects. Remaining: %s', 11);
-        // s = interpolate(fmts, [11, 20]);
+        // window.alert(gettext('this is to be translated'));
 
         function getCookie(c_name)
             {
@@ -33,19 +25,19 @@ $(document).ready(function(){
             var contents = $('#post_content').val();
 
             if (name.length == 0 && contents.length == 0){
-                swal("Oups!", "Post name and Post content are required!", "error");
+                swal(gettext("Oups!"), gettext("Post name and Post content are required!"), "error");
                 return;
             }
             else if (name.length == 0 ) {
-                swal("Oups!", "Post name is required!", "error");
+                swal(gettext("Oups!"), gettext("Post name is required!"), "error");
                 return;
             }
             else if (contents.length == 0) {
-                swal("Oups!", "Post content is required!", "error");
+                swal(gettext("Oups!"), gettext("Post content is required!"), "error");
                 return;
             }
             else{
-                swal("Post Name : " + name , "Post Content : " + contents , "success");
+                swal(gettext("Post Name : ") + name , gettext("Post Content : ") + contents , "success");
             }
 
             var user = $("#user-username").text();
@@ -69,15 +61,15 @@ $(document).ready(function(){
                         <div class="personal_info">\
                         <div class="photo_line"></div>\
                             <img class="pp" src="pp.png">\
-                            <p id="name_post"><b> Post name : </b>  '+name+'</p>\
-                            <p><b>By : '+user+'</b></p>\
+                            <p id="name_post"><b> Post Name : </b>  '+name+'</p>\
+                            <p><b>By : </b>'+user+'</p>\
                         </div>\
                         <hr class="h_line" color="black">\
                         <div class="outer">\
                         <div class="v_line"></div>\
                         </div>\
                         <p class="content">\
-                        <b>Content :</b> '+contents+' </p>\
+                        <b>Content</b> '+contents+' </p>\
                         </div>\
                         </div>';
                     $( ".middle" ).prepend(html);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-03 13:56+0300\n"
+"POT-Creation-Date: 2018-09-03 16:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: post/static/js/js_home.js:4
-msgid "this is to be translated"
-msgstr "tercume edildi"
+#: post/static/js/js_home.js:28 post/static/js/js_home.js:32
+#: post/static/js/js_home.js:36
+msgid "Oups!"
+msgstr "Eyvahlar olsun!"
+
+#: post/static/js/js_home.js:28
+msgid "Post name and Post content are required!"
+msgstr "Post ismi ve Post icerigi gereklidir!"
+
+#: post/static/js/js_home.js:32
+msgid "Post name is required!"
+msgstr "Post ismi gereklidir!"
+
+#: post/static/js/js_home.js:36
+msgid "Post content is required!"
+msgstr "Post icerigi gereklidir!"
+
+#: post/static/js/js_home.js:40
+msgid "Post Name : "
+msgstr "Post Ismi :"
+
+#: post/static/js/js_home.js:40
+msgid "Post Content : "
+msgstr "Post Icerigi :"
+
+#~ msgid "this is to be translated"
+#~ msgstr "tercume edildi"
