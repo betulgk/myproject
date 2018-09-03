@@ -5,6 +5,8 @@ from django.urls import path, include
 from accounts.views import signup, logout
 from post.views import HomeView, LoginHomeView, JsonTestView
 from django.conf.urls import url
+from django.views.i18n import JavaScriptCatalog
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -15,10 +17,13 @@ urlpatterns = [
     path('accounts/signup/', signup),
     url(r'^logout/', logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    # url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript_catalog'),
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript_catalog'),
 ]
 
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
+    
 ]
 
 urlpatterns += static(

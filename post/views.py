@@ -72,7 +72,14 @@ class JsonTestView(View):
         c = request.user.username
 
         new_post = Post(author=c, post_name=b, post_content=a)
-
         new_post.save()
+
+        # if ( a == 0 ):
+        #     return "Post content is required"
+        # elif ( b == 0):
+        #     return "Post name is required"
+        # else:
+        #     new_post.save()
+        #     return "GOOD !"
 
         return JsonResponse({'saved': 'True'})

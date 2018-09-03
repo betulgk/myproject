@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-29 10:12+0300\n"
+"POT-Creation-Date: 2018-09-03 12:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,94 +18,94 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: myproject/settings.py:104
+#: myproject/settings.py:105
 msgid "English"
 msgstr ""
 
-#: myproject/settings.py:105
+#: myproject/settings.py:106
 msgid "Turkish"
 msgstr "Turkce"
 
-#: post/templates/registration/home.html:35
+#: post/templates/registration/home.html:42
 #: post/templates/registration/login-home.html:39
 msgid "Search"
 msgstr "Ara"
 
-#: post/templates/registration/home.html:55
+#: post/templates/registration/home.html:62
 #: post/templates/registration/login-home.html:46
 msgid "Education"
 msgstr "Egitim"
 
-#: post/templates/registration/home.html:56
+#: post/templates/registration/home.html:63
 #: post/templates/registration/login-home.html:47
 msgid "Science"
 msgstr "Bilim"
 
-#: post/templates/registration/home.html:57
+#: post/templates/registration/home.html:64
 #: post/templates/registration/login-home.html:48
 msgid "Fun"
 msgstr "Eglence"
 
-#: post/templates/registration/home.html:58
+#: post/templates/registration/home.html:65
 #: post/templates/registration/login-home.html:49
 msgid "Sport"
 msgstr "Spor"
 
-#: post/templates/registration/home.html:59
+#: post/templates/registration/home.html:66
 #: post/templates/registration/login-home.html:50
 msgid "Book"
 msgstr "Kitap"
 
-#: post/templates/registration/home.html:60
+#: post/templates/registration/home.html:67
 #: post/templates/registration/login-home.html:51
 msgid "Troll"
 msgstr "Trol"
 
-#: post/templates/registration/home.html:61
+#: post/templates/registration/home.html:68
 #: post/templates/registration/login-home.html:52
 msgid "Technarts"
 msgstr "Technarts"
 
-#: post/templates/registration/home.html:73
+#: post/templates/registration/home.html:80
 #: post/templates/registration/login-home.html:63
 msgid "Post Name :"
 msgstr "Post Ismi :"
 
-#: post/templates/registration/home.html:74
+#: post/templates/registration/home.html:81
 #: post/templates/registration/login-home.html:64
 msgid "By :"
 msgstr "Kim Tarafindan :"
 
-#: post/templates/registration/home.html:81
+#: post/templates/registration/home.html:88
 #: post/templates/registration/login-home.html:71
 msgid "Content :"
 msgstr "Icerik :"
 
-#: post/templates/registration/home.html:109
+#: post/templates/registration/home.html:116
 msgid "New Post"
 msgstr "Yeni Post"
 
-#: post/templates/registration/home.html:115
+#: post/templates/registration/home.html:122
 msgid "NEW POST"
 msgstr "YENI POST"
 
-#: post/templates/registration/home.html:120
+#: post/templates/registration/home.html:127
 msgid "Post Name"
 msgstr "Post Ismi"
 
-#: post/templates/registration/home.html:121
+#: post/templates/registration/home.html:128
 msgid "Enter Post Name"
 msgstr "Post Ismini Giriniz"
 
-#: post/templates/registration/home.html:125
+#: post/templates/registration/home.html:132
 msgid "Post Content"
 msgstr "Post Icerigi"
 
-#: post/templates/registration/home.html:127
+#: post/templates/registration/home.html:134
 msgid "Enter post content"
 msgstr "Post Icerigini Giriniz"
 
-#: post/templates/registration/home.html:133
+#: post/templates/registration/home.html:140
 msgid "Submit"
 msgstr "Gonder"
 
